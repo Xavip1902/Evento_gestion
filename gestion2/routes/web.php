@@ -20,7 +20,7 @@ Route::delete('{id}', [EventoController::class, 'eliminar'])->name('evento.elimi
 //Route::put('/evento/actualizar/{id}', [EventoController::class, 'update'])->name('eventos.update');
 
 // Para mostrar el formulario de edición
-Route::get('/evento/{evento}/edit', [EventoController::class, 'edit'])->name('evento.edit');
+
 
 // Para procesar la actualización
 Route::put('/evento/{id}', [EventoController::class, 'update'])->name('evento.update');
@@ -41,9 +41,9 @@ Route::get('/asistentes', [AsistentesController::class, 'vista_asistentes'])->na
 Route::post('/asistentes', [AsistentesController::class, 'guardar'])->name('asistentes.guardar');
 
 // Mostrar formulario de edición
-Route::get('/asistentes/{id}/editar', [AsistentesController::class, 'edit'])->name('asistentes.edit');
+Route::get('/asistentes/{id}/editar', [AsistentesController::class, 'editar'])->name('asistentes.edit');
 // Procesar actualización
-Route::put('/asistente/{id}', [AsistentesController::class, 'actualizar'])->name('asistente.actualizar');
+Route::put('/asistentes/{id}', [AsistentesController::class, 'actualizar'])->name('asistentes.actualizar');
 
 // Eliminar asistente
 Route::delete('/asistentes/{id}', [AsistentesController::class, 'eliminar'])->name('asistentes.eliminar');

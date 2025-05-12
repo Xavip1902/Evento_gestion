@@ -10,19 +10,15 @@ use Illuminate\Support\Str;
 
 class AsistentesController extends Controller
 {
-    // Mostrar lista de asistentes con sus eventos (vista principal)
+   
    public function vista_asistentes()
 {
     $asistentes = Asistentes::all();
-    $eventos = Evento_model::all(); // Obtén todos los eventos
+    $eventos = Evento_model::all(); 
     return view('asistentes', compact('asistentes', 'eventos'));
 }
 
-  /**  public function create()
-{
-    $eventos = Evento::where('fecha_fin', '>=', now())->get(); // Solo eventos futuros
-    return view('asistentes.create', compact('eventos'));
-}*/
+ 
 
 public function guardar(Request $request)
 {
@@ -47,8 +43,29 @@ public function guardar(Request $request)
         ->with('success', 'Asistente registrado exitosamente');
 }
     
+public function editar($id)
+{
+    $asistente = Asistentes::findOrFail($id); 
+    $eventos = Evento_model::all(); /
+    return view('editar', compact('asistente', 'eventos')); 
+}
 
-    // Eliminar asistente
+public function actualizar(Request $request, $id)
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'email' => 'required|email|unique:asistentes,email,' . $id,
+        'telefono' => 'nullable|string|max:20',
+        'evento_id' => 'required|exists:eventos,id',
+        'estado_asistencia' => 'required|in:registrado,asistió,no asistió',
+    ]);
+
+    $asistente = Asistentes::findOrFail($id);
+    $asistente->update($request->all());
+
+    return redirect()->route('principal')->with('success', 'Asistente actualizado exitosamente');
+}
+   
     public function eliminar($id)
 {
     try {
@@ -62,7 +79,7 @@ public function guardar(Request $request)
     }
 }
 
-    // Mostrar QR (opcional)
+    // Mostrar QR (opcional) por el momento
     public function mostrarQR($codigo)
 {
     return view('asistente.qr', compact('codigo'));

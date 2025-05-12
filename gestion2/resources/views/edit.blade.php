@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between mt-5">
-                    <a href="{{ route('evento.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('principal') }}" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary btn-submit">Actualizar Evento</button>
                 </div>
             </form>
@@ -142,7 +142,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Validación de fechas
+       
         document.addEventListener('DOMContentLoaded', function() {
             const fechaInicio = document.getElementById('fecha_inicio');
             const fechaFin = document.getElementById('fecha_fin');

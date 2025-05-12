@@ -57,8 +57,8 @@ class EventoController extends Controller
 
 public function edit($id)
 {
-    $evento = Evento_model::findOrFail($id); // Busca el evento por ID
-    return view('edit', compact('evento')); // Carga la vista y pasa el evento
+    $evento = Evento_model::findOrFail($id); 
+    return view('edit', compact('evento')); 
 }
     public function update(Request $request, $id)
     {
