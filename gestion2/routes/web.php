@@ -7,7 +7,8 @@ use App\Http\Controllers\AsistentesController;
 Route::get('/', [EventoController::class, 'principal'])->name('principal');
 Route::get('/evento', [EventoController::class, 'index'])->name('evento.index');
 Route::post('/evento', [EventoController::class, 'guardar'])->name('evento.guardar');
-
+Route::get('/evento/{id}', [EventoController::class, 'edit'])->name('evento.edit');
+Route::put('/evento/{id}', [EventoController::class, 'update'])->name('evento.update');
 Route::delete('{id}', [EventoController::class, 'eliminar'])->name('evento.eliminar');
 
 

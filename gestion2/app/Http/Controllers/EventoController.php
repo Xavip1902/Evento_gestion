@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\Evento_model;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -54,14 +54,14 @@ class EventoController extends Controller
         return redirect()->route('principal')->with('success', 'Evento creado exitosamente');
     }
 
-    public function edit($id)
-    {
-        $evento = Evento_model::findOrFail($id);
-        $usuarios = User::all();
-        return view('evento.edit', compact('evento', 'usuarios'));
-    }
+
+public function edit($id)
+{
+    $evento = Evento_model::findOrFail($id); // Busca el evento por ID
+    return view('edit', compact('evento')); // Carga la vista y pasa el evento
+}
     public function update(Request $request, $id)
-    {   
+    {
         $validated = $request->validate([
             'nombre_evento' => 'required|string|max:255',
             'descripcion' => 'required|string',
