@@ -36,7 +36,7 @@ Route::put('/evento/{id}', [EventoController::class, 'update'])->name('evento.up
 // Mostrar formulario de creación
 
 Route::get('/asistentes', [AsistentesController::class, 'vista_asistentes'])->name('asistentes.index');
-Route::get('/asistentes/crear', [AsistentesController::class, 'create'])->name('asistentes.create');
+
 Route::post('/asistentes', [AsistentesController::class, 'guardar'])->name('asistentes.guardar');
 
 // Mostrar formulario de edición

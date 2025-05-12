@@ -72,7 +72,7 @@
     <!-- Tabla de asistentes -->
     <h1>Asistentes Registrados</h1>
 
-    <a href="" class="btn btn-success">Nuevo Asistente</a>
+    <a href="/asistentes" class="btn btn-success">Nuevo Asistente</a>
 
     <table>
         <thead>
