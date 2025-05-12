@@ -36,11 +36,11 @@
 
         <label>Evento:</label>
         <select name="evento_id" required>
-            <option value="">Selecciona un evento</option>
-            @foreach($eventos as $evento)
-                <option value="{{ $evento->id }}">{{ $evento->nombre_evento }}</option>
-            @endforeach
-        </select><br><br>
+    <option value="">Selecciona un evento</option>
+    @foreach($eventos as $evento)
+        <option value="{{ $evento->id }}">{{ $evento->nombre_evento }}</option>
+    @endforeach
+</select><br><br>
 
         <label>Estado de asistencia:</label>
         <select name="estado_asistencia" required>

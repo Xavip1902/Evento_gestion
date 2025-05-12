@@ -54,16 +54,14 @@ class EventoController extends Controller
         return redirect()->route('principal')->with('success', 'Evento creado exitosamente');
     }
 
-    public function edit(Evento_model $evento)
+    public function edit($id)
     {
+        $evento = Evento_model::findOrFail($id);
         $usuarios = User::all();
         return view('evento.edit', compact('evento', 'usuarios'));
     }
-
     public function update(Request $request, $id)
-    {
-        $evento = Evento_model::findOrFail($id);
-
+    {   
         $validated = $request->validate([
             'nombre_evento' => 'required|string|max:255',
             'descripcion' => 'required|string',
@@ -74,17 +72,20 @@ class EventoController extends Controller
             'tipo_evento' => 'required|string|max:255',
         ]);
 
+        $evento = Evento_model::findOrFail($id);
         $evento->update($validated);
 
-        return redirect()->route('evento.index')->with('success', 'Evento actualizado exitosamente.');
+        return redirect()->route('principal')->with('success', 'Evento actualizado exitosamente');
     }
+
+        
 
     public function eliminar($id)
     {
         try {
             $evento = Evento_model::findOrFail($id);
             $evento->delete();
-            return redirect()->route('evento.index')->with('success', 'Evento eliminado exitosamente');
+            return redirect()->route('principal')->with('success', 'Evento eliminado exitosamente');
         } catch (\Exception $e) {
             return back()->with('error', 'Error al eliminar el evento: ' . $e->getMessage());
 

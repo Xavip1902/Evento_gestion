@@ -34,24 +34,24 @@ Route::put('/evento/{id}', [EventoController::class, 'update'])->name('evento.up
 //Route::get('/asistentes/ver', [AsistentesController::class, 'vista_asistentes'])->name('vista_asistentes');
 
 // Mostrar formulario de creación
-Route::get('/asistentes', [AsistentesController::class, 'create'])->name('asistentes.crear');
 
-// Procesar creación
+Route::get('/asistentes', [AsistentesController::class, 'vista_asistentes'])->name('asistentes.index');
+Route::get('/asistentes/crear', [AsistentesController::class, 'create'])->name('asistentes.create');
 Route::post('/asistentes', [AsistentesController::class, 'guardar'])->name('asistentes.guardar');
 
 // Mostrar formulario de edición
 Route::get('/asistentes/{id}/editar', [AsistentesController::class, 'edit'])->name('asistentes.edit');
-
 // Procesar actualización
-Route::put('/asistentes/{id}', [AsistentesController::class, 'actualizar'])->name('asistentes.actualizar');
+Route::put('/asistente/{id}', [AsistentesController::class, 'actualizar'])->name('asistente.actualizar');
 
 // Eliminar asistente
 Route::delete('/asistentes/{id}', [AsistentesController::class, 'eliminar'])->name('asistentes.eliminar');
 
 // Vista QR (opcional)
 Route::get('/qr/{codigo}', function($codigo) {
-    return view('asistentes.qr', compact('codigo'));
-})->name('asistentes.qr');
+    return view('asistente.qr', compact('codigo'));
+})->name('asistente.qr');
 
 
+// Vista de asistentes
 

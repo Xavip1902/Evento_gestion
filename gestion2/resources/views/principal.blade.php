@@ -57,7 +57,7 @@
                     <td>{{ $evento->tipo_evento }}</td>
                     <td>
                         <a href="{{ route('evento.edit', $evento->id) }}" class="btn btn-warning btn-sm">Editar</a>
-
+                        
                         <form action="{{ route('evento.eliminar', $evento->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -72,7 +72,7 @@
     <!-- Tabla de asistentes -->
     <h1>Asistentes Registrados</h1>
 
-    <a href="{{ route('asistentes.crear') }}" class="btn btn-success">Nuevo Asistente</a>
+    <a href="" class="btn btn-success">Nuevo Asistente</a>
 
     <table>
         <thead>
@@ -112,9 +112,12 @@
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este asistente?')">Eliminar</button>
                         </form>
                     </td>
+
                 </tr>
             @endforeach
         </tbody>
+
+
     </table>
 
 </body>
