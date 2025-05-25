@@ -46,7 +46,7 @@ public function guardar(Request $request)
 public function editar($id)
 {
     $asistente = Asistentes::findOrFail($id); 
-    $eventos = Evento_model::all(); /
+    $eventos = Evento_model::all(); 
     return view('editar', compact('asistente', 'eventos')); 
 }
 
@@ -79,7 +79,7 @@ public function actualizar(Request $request, $id)
     }
 }
 
-    // Mostrar QR (opcional) por el momento
+    
     public function mostrarQR($codigo)
 {
     return view('asistente.qr', compact('codigo'));

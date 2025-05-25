@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ubicacion');
             $table->unsignedBigInteger('organizador_id');
             $table->enum('estado', ['activo', 'finalizado', 'cancelado']);
+            $table->string('codigo_qr')->nullable();
             $table->string('tipo_evento');
             $table->timestamps();
 

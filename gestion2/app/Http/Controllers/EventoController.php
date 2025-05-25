@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 use App\Models\Evento_model;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
@@ -24,11 +28,10 @@ class EventoController extends Controller
         return view('index', compact('eventos', 'usuarios'));
     }
 
-     public function evento()
+    public function evento()
     {
-        return $this->belongsTo(Evento_model::class,'evento_id');
-    }   
-
+        return $this->belongsTo(Evento_model::class, 'evento_id');
+    }
 
     public function create()
     {
@@ -36,30 +39,45 @@ class EventoController extends Controller
         return view('evento.create', compact('usuarios'));
     }
 
-
     public function guardar(Request $request)
+{
+    $validated = $request->validate([
+        'nombre_evento' => 'required|string|max:255',
+        'descripcion' => 'required|string',
+        'fecha_inicio' => 'required|date',
+        'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+        'ubicacion' => 'required|string|max:255',
+        'estado' => 'required|in:activo,finalizado,cancelado',
+        'tipo_evento' => 'required|string|max:255',
+    ]);
+
+    
+    $evento = Evento_model::create($validated);
+
+    $contenido = "Evento: {$evento->nombre_evento}\nDescripción: {$evento->descripcion}\nFecha: {$evento->fecha_inicio}";
+
+    
+    $qr = new QrCode($contenido);
+    $writer = new PngWriter();
+    $result = $writer->write($qr);
+
+    $nombreArchivo = 'qr_evento_' . $evento->id . '.png';
+    Storage::put("public/qrcodes/{$nombreArchivo}", $result->getString());
+
+    
+    $evento->codigo_qr = $nombreArchivo;
+    $evento->save();
+
+    return redirect()->route('principal')->with('success', 'Evento creado exitosamente');
+}
+
+
+    public function edit($id)
     {
-        $validated = $request->validate([
-            'nombre_evento' => 'required|string|max:255',
-            'descripcion' => 'required|string',
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
-            'ubicacion' => 'required|string|max:255',
-            'estado' => 'required|in:activo,finalizado,cancelado',
-            'tipo_evento' => 'required|string|max:255',
-        ]);
-
-        Evento_model::create($validated);
-
-        return redirect()->route('principal')->with('success', 'Evento creado exitosamente');
+        $evento = Evento_model::findOrFail($id);
+        return view('edit', compact('evento'));
     }
 
-
-public function edit($id)
-{
-    $evento = Evento_model::findOrFail($id); 
-    return view('edit', compact('evento')); 
-}
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -78,8 +96,6 @@ public function edit($id)
         return redirect()->route('principal')->with('success', 'Evento actualizado exitosamente');
     }
 
-        
-
     public function eliminar($id)
     {
         try {
@@ -88,10 +104,37 @@ public function edit($id)
             return redirect()->route('principal')->with('success', 'Evento eliminado exitosamente');
         } catch (\Exception $e) {
             return back()->with('error', 'Error al eliminar el evento: ' . $e->getMessage());
-
-    
         }
-
     }
+
+      public function exportarExcel()
+    {
+        return Excel::download(new EventosExport(), 'eventos.xlsx');
+    }
+
+      public function exportarPDF()
+    {
+        $eventos = Evento_model::all();
+        $fecha = Carbon::now()->format('d-m-Y');
+
+
+        $pdf = \PDF::loadView('eventos_pdf', compact('eventos', 'fecha'));
+        return $pdf->download("reporte-eventos-{$fecha}.pdf");
+    }
+   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
