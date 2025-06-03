@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2025 a las 17:22:05
+-- Tiempo de generación: 03-06-2025 a las 05:38:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,18 +38,6 @@ CREATE TABLE `asistentes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `asistentes`
---
-
-INSERT INTO `asistentes` (`id`, `nombre`, `email`, `telefono`, `evento_id`, `estado_asistencia`, `codigo_qr`, `created_at`, `updated_at`) VALUES
-(5, 'Xavier', 'xperezbonilla@gmail.com', '75091673', 3, 'asistió', '1a19af46-b580-448d-91c5-86754aeb0752', '2025-05-25 20:54:15', '2025-05-25 20:54:15'),
-(6, 'Blanca', 'meroloco@gmail.com', '21212828', 3, 'asistió', '3ac1fa6b-4c7c-465b-b3ae-a3407c9f7128', '2025-05-25 20:54:34', '2025-05-25 20:54:34'),
-(7, 'Camila', 'camila@gmail.com', '23242526', 3, 'no asistió', '1a7a866b-c922-497d-9232-13717b6ad571', '2025-05-25 20:54:48', '2025-05-25 20:54:48'),
-(8, 'Jorge', 'jorgeGoku@gmail.com', '71712020', 3, 'no asistió', '5da876e8-42a0-4548-8787-bf8cfcb04848', '2025-05-25 20:55:11', '2025-05-25 20:55:11'),
-(9, 'Chiky', 'chiky@gmail.com', '40303040', 4, 'registrado', 'd0651bf2-e1ba-49c8-b080-3665b8857a17', '2025-05-25 20:57:39', '2025-05-25 20:57:39'),
-(10, 'Xavier', 'perezbonillaxavieralexander@gmail.com', '+50375091673', 4, 'registrado', 'bc77435e-f8fe-43eb-9355-4f3fd41fc949', '2025-05-25 20:58:55', '2025-05-25 20:58:55');
 
 -- --------------------------------------------------------
 
@@ -101,8 +89,7 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `nombre_evento`, `descripcion`, `fecha_inicio`, `fecha_fin`, `ubicacion`, `organizador_id`, `estado`, `codigo_qr`, `tipo_evento`, `created_at`, `updated_at`) VALUES
-(3, 'Proyecto de Progra', 'Laravel', '2025-05-24', '2025-05-24', 'Discord', NULL, 'finalizado', 'qr_evento_3.png', 'Reunion', '2025-05-25 20:53:45', '2025-05-25 20:53:46'),
-(4, 'Proyecto Sotfware', 'Product Backlog', '2025-05-25', '2025-05-25', 'Discord', NULL, 'activo', 'qr_evento_4.png', 'Reunion', '2025-05-25 20:57:00', '2025-05-25 20:57:00');
+(1, 'PARCIAL', 'EXAAAMEN ESCRITO', '2025-06-03', '2025-06-03', 'UGB', NULL, 'activo', 'qr_evento_1.png', 'ESTUDIANTIL', '2025-06-03 08:33:56', '2025-06-03 08:33:57');
 
 -- --------------------------------------------------------
 
@@ -172,12 +159,12 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2025_05_11_042356_create_eventos_table', 1),
-(5, '2025_05_11_042535_create_asistentes_table', 1),
-(6, '2025_05_24_162208_create_permission_tables', 1);
+(7, '0001_01_01_000000_create_users_table', 1),
+(8, '0001_01_01_000001_create_cache_table', 1),
+(9, '0001_01_01_000002_create_jobs_table', 1),
+(10, '2025_05_11_042356_create_eventos_table', 1),
+(11, '2025_05_11_042535_create_asistentes_table', 1),
+(12, '2025_05_24_162208_create_permission_tables', 1);
 
 -- --------------------------------------------------------
 
@@ -274,7 +261,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('x6hR3VyUnvlZDUXgy587Xy7RPS38gPSTaiS5YhhA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiT1dTZ1I2UldIdG9ieUNPbG96VHpPSGM2YkxUcldTWDlpTG5rRmRNaSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1748185705);
+('SrycxtJq5U1R7zh6vOqRO6VCvFFQiMNSYjL2HJbv', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRzBoTzlEeThtS2E1N1BMSk01YTBkYjRTRlhXaTZYV1NVcVg4eUNsRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1748921792);
 
 -- --------------------------------------------------------
 
@@ -285,7 +272,7 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -298,7 +285,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'xavier', 'xperezbonilla@gmail.com', NULL, '1234', NULL, NULL, NULL);
+(1, 'admin', 'admin@example.com', NULL, '$2y$12$PmtgPIvt1KbhGGjwf4SM7.PSYi2sVa7R/B69Ex7co6WXxQMDsk9/G', NULL, '2025-06-01 22:13:15', '2025-06-01 22:13:15'),
+(2, 'Xavi', 'xavi@gmail.com', NULL, '$2y$12$SoqOHaLrqsAlazyV1TD9C.8r/FtWOYBMvtK1HRtw/kZ9CdBlqy22.', NULL, '2025-06-01 22:38:08', '2025-06-01 22:38:08');
 
 --
 -- Índices para tablas volcadas
@@ -421,13 +409,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `asistentes`
 --
 ALTER TABLE `asistentes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -445,7 +433,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `permissions`
