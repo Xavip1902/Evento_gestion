@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2025 a las 07:33:59
+-- Tiempo de generación: 25-05-2025 a las 17:22:05
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,10 +44,12 @@ CREATE TABLE `asistentes` (
 --
 
 INSERT INTO `asistentes` (`id`, `nombre`, `email`, `telefono`, `evento_id`, `estado_asistencia`, `codigo_qr`, `created_at`, `updated_at`) VALUES
-(1, 'Xavier', 'xavier@gmail.com', '75091673', 4, 'asistió', '5238769e-2b3d-4624-b3cc-f9f3426c3384', '2025-05-12 06:26:57', '2025-05-12 06:26:57'),
-(2, 'Jorge', 'jorgeGoku@gmail.com', '21212828', 6, 'asistió', '8085a20e-a55f-4707-8d69-b15b7b973408', '2025-05-12 10:28:30', '2025-05-12 10:28:30'),
-(3, 'Jorge', 'perezbonillaxavieralexander@gmail.com', '75091673', 5, 'registrado', '940e90d0-d39f-487c-82e6-cfa03a5feb92', '2025-05-12 10:32:06', '2025-05-12 11:23:04'),
-(5, 'Blanca', 'Blanca@gmail.com', '75091673', 4, 'no asistió', 'd9eef71a-3e28-4569-b742-8ee9abd2571d', '2025-05-12 11:24:59', '2025-05-12 11:24:59');
+(5, 'Xavier', 'xperezbonilla@gmail.com', '75091673', 3, 'asistió', '1a19af46-b580-448d-91c5-86754aeb0752', '2025-05-25 20:54:15', '2025-05-25 20:54:15'),
+(6, 'Blanca', 'meroloco@gmail.com', '21212828', 3, 'asistió', '3ac1fa6b-4c7c-465b-b3ae-a3407c9f7128', '2025-05-25 20:54:34', '2025-05-25 20:54:34'),
+(7, 'Camila', 'camila@gmail.com', '23242526', 3, 'no asistió', '1a7a866b-c922-497d-9232-13717b6ad571', '2025-05-25 20:54:48', '2025-05-25 20:54:48'),
+(8, 'Jorge', 'jorgeGoku@gmail.com', '71712020', 3, 'no asistió', '5da876e8-42a0-4548-8787-bf8cfcb04848', '2025-05-25 20:55:11', '2025-05-25 20:55:11'),
+(9, 'Chiky', 'chiky@gmail.com', '40303040', 4, 'registrado', 'd0651bf2-e1ba-49c8-b080-3665b8857a17', '2025-05-25 20:57:39', '2025-05-25 20:57:39'),
+(10, 'Xavier', 'perezbonillaxavieralexander@gmail.com', '+50375091673', 4, 'registrado', 'bc77435e-f8fe-43eb-9355-4f3fd41fc949', '2025-05-25 20:58:55', '2025-05-25 20:58:55');
 
 -- --------------------------------------------------------
 
@@ -88,6 +90,7 @@ CREATE TABLE `eventos` (
   `ubicacion` varchar(255) NOT NULL,
   `organizador_id` bigint(20) UNSIGNED DEFAULT NULL,
   `estado` enum('activo','finalizado','cancelado') NOT NULL,
+  `codigo_qr` varchar(255) DEFAULT NULL,
   `tipo_evento` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -97,11 +100,9 @@ CREATE TABLE `eventos` (
 -- Volcado de datos para la tabla `eventos`
 --
 
-INSERT INTO `eventos` (`id`, `nombre_evento`, `descripcion`, `fecha_inicio`, `fecha_fin`, `ubicacion`, `organizador_id`, `estado`, `tipo_evento`, `created_at`, `updated_at`) VALUES
-(4, 'Clasico', 'BC VS MD', '2025-05-12', '2025-05-12', 'Barcelona', NULL, 'activo', 'Partido', '2025-05-12 04:08:20', '2025-05-12 04:08:20'),
-(5, 'Clasico', 'Juego amistoso', '2025-05-12', '2025-05-12', 'Barcelona', NULL, 'activo', 'Partido', '2025-05-12 05:24:12', '2025-05-12 11:28:24'),
-(6, 'Clasico', 'Jorge vs Chiky', '2025-05-31', '2025-05-31', 'El amaton', NULL, 'activo', 'Boxeo', '2025-05-12 08:25:10', '2025-05-12 11:08:48'),
-(9, 'Mundial', 'Futbol Internacional', '2025-05-24', '2025-05-27', 'Colombia', NULL, 'activo', 'Partido', '2025-05-12 11:25:50', '2025-05-12 11:26:19');
+INSERT INTO `eventos` (`id`, `nombre_evento`, `descripcion`, `fecha_inicio`, `fecha_fin`, `ubicacion`, `organizador_id`, `estado`, `codigo_qr`, `tipo_evento`, `created_at`, `updated_at`) VALUES
+(3, 'Proyecto de Progra', 'Laravel', '2025-05-24', '2025-05-24', 'Discord', NULL, 'finalizado', 'qr_evento_3.png', 'Reunion', '2025-05-25 20:53:45', '2025-05-25 20:53:46'),
+(4, 'Proyecto Sotfware', 'Product Backlog', '2025-05-25', '2025-05-25', 'Discord', NULL, 'activo', 'qr_evento_4.png', 'Reunion', '2025-05-25 20:57:00', '2025-05-25 20:57:00');
 
 -- --------------------------------------------------------
 
@@ -174,8 +175,33 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2025_05_11_042356_create_eventos_table', 2),
-(5, '2025_05_11_042535_create_asistentes_table', 3);
+(4, '2025_05_11_042356_create_eventos_table', 1),
+(5, '2025_05_11_042535_create_asistentes_table', 1),
+(6, '2025_05_24_162208_create_permission_tables', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -187,6 +213,45 @@ CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -209,7 +274,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('l9IJlrmgDDlKET5dyZ0D2S0rfzmJZABKyFC6qxeI', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVXdkWjFNYm14YkZxS000TmdzZGdWUXJpVkNuTXVHeWUxdHdxYU9GbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ldmVudG8iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1747027746);
+('x6hR3VyUnvlZDUXgy587Xy7RPS38gPSTaiS5YhhA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiT1dTZ1I2UldIdG9ieUNPbG96VHpPSGM2YkxUcldTWDlpTG5rRmRNaSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1748185705);
 
 -- --------------------------------------------------------
 
@@ -227,6 +292,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'xavier', 'xperezbonilla@gmail.com', NULL, '1234', NULL, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -286,10 +358,45 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indices de la tabla `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
 -- Indices de la tabla `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
+
+--
+-- Indices de la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indices de la tabla `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
 -- Indices de la tabla `sessions`
@@ -314,13 +421,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `asistentes`
 --
 ALTER TABLE `asistentes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -338,13 +445,25 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -361,6 +480,25 @@ ALTER TABLE `asistentes`
 --
 ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_organizador_id_foreign` FOREIGN KEY (`organizador_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
