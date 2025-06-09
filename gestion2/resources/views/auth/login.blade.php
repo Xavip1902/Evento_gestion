@@ -1,149 +1,134 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-	<title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
 
-	<!-- Bootstrap y otros estilos -->
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-		integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <!-- Bootstrap 5 y Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-	<!-- Scripts necesarios -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+          
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-	<!-- Estilos personalizados con paleta suave -->
-	<style>
-		body,
-		html {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			background: #d6eaf8 !important;
-		}
+			background: url('https://cdn.discordapp.com/attachments/1379967309598429297/1381780259917140019/image0.jpg?ex=6848c2a6&is=68477126&hm=cad2738f36496ff47ee9e444a88f70abc26f4b9aa9fb8e1acf3a545ded0092f2&') no-repeat center center fixed;
+			background-size: cover;
+        }
 
-		.user_card {
-			height: 400px;
-			width: 350px;
-			margin-top: auto;
-			margin-bottom: auto;
-			background: #f5eef8;
-			position: relative;
-			display: flex;
-			justify-content: center;
-			flex-direction: column;
-			padding: 10px;
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-				0 6px 20px rgba(0, 0, 0, 0.1);
-			border-radius: 10px;
-		}
+        .card-login {
+            background: #ffffffcc;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-		.brand_logo_container {
-			position: absolute;
-			height: 170px;
-			width: 170px;
-			top: -75px;
-			border-radius: 50%;
-			background: #aed6f1;
-			padding: 10px;
-			text-align: center;
-		}
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            margin-top: -70px;
+        }
 
-		.brand_logo {
-			height: 150px;
-			width: 150px;
-			border-radius: 50%;
-			border: 2px solid white;
-		}
+        .form-control {
+            border-radius: 30px;
+            padding: 12px 20px;
+        }
 
-		.form_container {
-			margin-top: 100px;
-		}
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(164, 105, 189, 0.25);
+            border-color: #a569bd;
+        }
 
-		.login_btn {
-			width: 100%;
-			background: #a569bd !important;
-			color: white !important;
-			border: none;
-		}
+        .btn-login {
+            background: #a569bd;
+            border: none;
+            border-radius: 30px;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
 
-		.login_btn:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
+        .btn-login:hover {
+            background: #8e44ad;
+            box-shadow: 0 4px 15px rgba(142, 68, 173, 0.4);
+            transform: translateY(-2px);
+        }
 
-		.login_container {
-			padding: 0 2rem;
-		}
+        .alert-danger {
+            background-color: #fcebea;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+            font-weight: bold;
+            border-radius: 15px;
+        }
 
-		.input-group-text {
-			background: #a569bd !important;
-			color: white !important;
-			border: none !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
-		}
-
-		.input_user,
-		.input_pass:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-
-		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-			background-color: #a569bd !important;
-		}
-	</style>
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
 </head>
-
 <body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC5jom4gOehCdYga_ifJSBeeshWUCVdWh7iw&s"
-							class="brand_logo" alt="Logo">
-					</div>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-					<form action="/login" method="POST">
-                        @csrf
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" name="name" class="form-control input_user" placeholder="Usuario" required>
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="password" class="form-control input_pass" placeholder="Contraseña" required>
-						</div>
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="customControlInline" name="remember">
-								<label class="custom-control-label" for="customControlInline">Remember me</label>
-							</div>
-						</div>
-						<div class="d-flex justify-content-center mt-3 login_container">
-							<button type="submit" class="btn login_btn">Login</button>
-						</div>
-					</form>
-				</div>
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2"></a>
-					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
 
+    <div class="card-login text-center position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC5jom4gOehCdYga_ifJSBeeshWUCVdWh7iw&s" alt="Logo" class="logo-img position-absolute top-0 start-50 translate-middle">
+
+        <h4 class="mt-5 mb-3">Bienvenido</h4>
+        <p class="text-muted mb-4">Por favor, ingresa tus credenciales</p>
+
+        <form action="/login" method="POST">
+            @csrf
+
+            @if ($errors->has('name'))
+                <div class="alert alert-danger mb-3">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    {{ $errors->first('name') }}
+                </div>
+            @endif
+
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-light"><i class="fas fa-user text-purple"></i></span>
+                <input type="text" name="name" class="form-control" placeholder="Usuario" required value="{{ old('name') }}">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-light"><i class="fas fa-key text-purple"></i></span>
+                <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit" class="btn btn-login w-100">
+                <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+            </button>
+        </form>
+
+        
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para ocultar alertas -->
+    <script>
+        setTimeout(() => {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => alert.classList.add('fade'));
+        }, 4000);
+    </script>
+
+</body>
 </html>

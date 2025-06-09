@@ -430,12 +430,6 @@
                         <span>Reportes</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-cog"></i>
-                        <span>Configuración</span>
-                    </a>
-                </li>
             </ul>
         </aside>
 
@@ -507,7 +501,6 @@
                             <th>Ubicación</th>
                             <th>Estado</th>
                             <th>Tipo</th>
-                            <th>QR</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -528,13 +521,6 @@
                                 @endif
                             </td>
                             <td data-label="Tipo">{{ $evento->tipo_evento }}</td>
-                            <td data-label="QR">
-                                @if($evento->codigo_qr)
-                                    <img src="{{ asset('storage/qrcodes/' . $evento->codigo_qr) }}" alt="QR Evento" class="qr-img">
-                                @else
-                                    N/A
-                                @endif
-                            </td>
                             <td data-label="Acciones" class="actions">
                                 <a href="{{ route('evento.edit', $evento->id) }}" class="btn btn-warning btn-sm" title="Editar">
                                     <i class="fas fa-edit"></i>
@@ -573,7 +559,6 @@
                             <th>Teléfono</th>
                             <th>Evento</th>
                             <th>Estado</th>
-                            <th>QR</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -591,13 +576,6 @@
                                     <span class="badge">Registrado</span>
                                 @else
                                     <span class="badge badge-canceled">No asistió</span>
-                                @endif
-                            </td>
-                            <td data-label="QR">
-                                @if($asistente->codigo_qr)
-                                    <a href="#" onclick="window.open('{{ route('asistente.qr', $asistente->codigo_qr) }}', 'qr', 'width=300,height=300')">Ver QR</a>
-                                @else
-                                    N/A
                                 @endif
                             </td>
                             <td data-label="Acciones" class="actions">

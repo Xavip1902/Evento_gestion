@@ -8,6 +8,9 @@ use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\HomeController;
 
 // Redirección de raíz
+
+// Redirige la ruta raíz ("/") al login
+
 Route::get('/', [EventoController::class, 'principal'])->name('principal');
 
 

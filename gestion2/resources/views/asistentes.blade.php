@@ -20,7 +20,8 @@
             margin: 0;
             padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
@@ -115,6 +116,24 @@
             font-weight: 600;
         }
 
+        .regresar-btn {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .regresar-btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+
         @media (max-width: 500px) {
             .container {
                 padding: 20px;
@@ -173,6 +192,9 @@
             <div id="loadingSpinner" role="status">⏳ Guardando...</div>
         </form>
     </div>
+
+    <!-- Botón Regresar -->
+    <a href="/" class="regresar-btn">⟵ Regresar</a>
 
     <script>
         const form = document.querySelector('form');

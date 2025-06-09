@@ -32,8 +32,8 @@
             line-height: 1.6;
             padding: 20px;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
             min-height: 100vh;
         }
 
@@ -138,6 +138,31 @@
             outline: none;
         }
 
+
+        .regresar-btn {
+            margin-top: 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            box-shadow: 0 3px 6px rgba(67, 97, 238, 0.4);
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .regresar-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(63, 55, 201, 0.6);
+        }
+
         @media (max-width: 480px) {
             .container {
                 padding: 25px 20px;
@@ -146,6 +171,10 @@
             button {
                 font-size: 1rem;
                 padding: 12px;
+            }
+            .regresar-btn {
+                font-size: 0.95rem;
+                padding: 10px 20px;
             }
         }
     </style>
@@ -206,5 +235,7 @@
             <button type="submit" aria-label="Guardar nuevo evento">Guardar Evento</button>
         </form>
     </main>
+
+    <a href="/" class="regresar-btn" aria-label="Volver a la página anterior">⟵ Regresar</a>
 </body>
 </html>
