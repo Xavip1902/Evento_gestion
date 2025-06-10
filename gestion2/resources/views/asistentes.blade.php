@@ -193,8 +193,7 @@
         </form>
     </div>
 
-    <!-- Botón Regresar -->
-    <a href="/" class="regresar-btn">⟵ Regresar</a>
+    <a href="principal" class="regresar-btn">⟵ Regresar</a>
 
     <script>
         const form = document.querySelector('form');

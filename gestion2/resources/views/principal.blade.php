@@ -89,7 +89,6 @@
             text-align: center;
         }
 
-      
         .main-content {
             padding: 20px;
         }
@@ -120,7 +119,6 @@
             margin-right: 10px;
         }
 
-        
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -182,7 +180,6 @@
             font-size: 0.9rem;
         }
 
-        
         .table-section {
             background: white;
             border-radius: var(--border-radius);
@@ -286,6 +283,11 @@
             color: var(--danger-color);
         }
 
+        .badge-registered {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+        }
+
         .actions {
             display: flex;
             gap: 5px;
@@ -298,7 +300,6 @@
             border-radius: 4px;
         }
 
-        
         .message {
             padding: 12px 20px;
             border-radius: 6px;
@@ -316,7 +317,6 @@
             border: 1px solid #f5c6cb;
         }
 
-        
         @media (max-width: 992px) {
             .container {
                 grid-template-columns: 1fr;
@@ -433,7 +433,6 @@
             </ul>
         </aside>
 
-     
         <main class="main-content">
             <div class="header">
                 <h1>Panel de Gestión de Eventos</h1>
@@ -451,7 +450,7 @@
                 <div class="message error" role="alert" aria-live="polite">{{ session('error') }}</div>
             @endif
 
-            
+            <!-- Estadísticas principales -->
             <div class="stats-container">
                 <div class="stat-card primary">
                     <div class="icon">
@@ -465,25 +464,25 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>{{ $asistentes->count() }}</h3>
-                    <p>Asistentes</p>
+                    <p>Total Asistentes</p>
                 </div>
                 <div class="stat-card warning">
                     <div class="icon">
-                        <i class="fas fa-ticket-alt"></i>
+                        <i class="fas fa-check-circle"></i>
                     </div>
                     <h3>{{ $asistentes->where('estado_asistencia', 'asistió')->count() }}</h3>
                     <p>Asistencias Confirmadas</p>
                 </div>
                 <div class="stat-card danger">
                     <div class="icon">
-                        <i class="fas fa-exclamation-circle"></i>
+                        <i class="fas fa-calendar-times"></i>
                     </div>
                     <h3>{{ $eventos->where('estado', 'cancelado')->count() }}</h3>
                     <p>Eventos Cancelados</p>
                 </div>
             </div>
 
-
+            <!-- Tabla de Eventos -->
             <div class="table-section">
                 <div class="section-header">
                     <h2>Eventos Registrados</h2>
@@ -542,7 +541,7 @@
                 </table>
             </div>
 
-           
+            <!-- Tabla de Asistentes -->
             <div class="table-section">
                 <div class="section-header">
                     <h2>Asistentes Registrados</h2>
@@ -573,7 +572,7 @@
                                 @if($asistente->estado_asistencia == 'asistió')
                                     <span class="badge badge-active">Asistió</span>
                                 @elseif($asistente->estado_asistencia == 'registrado')
-                                    <span class="badge">Registrado</span>
+                                    <span class="badge badge-registered">Registrado</span>
                                 @else
                                     <span class="badge badge-canceled">No asistió</span>
                                 @endif

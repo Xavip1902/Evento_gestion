@@ -11,7 +11,11 @@ use App\Http\Controllers\HomeController;
 
 // Redirige la ruta raíz ("/") al login
 
-Route::get('/', [EventoController::class, 'principal'])->name('principal');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+Route::get('/principal', [EventoController::class, 'principal'])->name('principal');
 
 
 // Rutas Públicas
